@@ -673,6 +673,8 @@ func (config VoiceConfig) method() string {
 // MediaGroupConfig contains information about a sendMediaGroup request.
 type MediaGroupConfig struct {
 	BaseChat
+
+	ParseMode  string
 	InputMedia []interface{}
 }
 
@@ -688,6 +690,7 @@ func (config MediaGroupConfig) values() (url.Values, error) {
 	}
 
 	v.Add("media", string(data))
+	v.Add("parse_mode", config.ParseMode)
 
 	return v, nil
 }
